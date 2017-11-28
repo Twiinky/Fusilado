@@ -23,6 +23,8 @@ void alloc_matrix(struct matrix *m, int n)
 
 void alloc_matrix2(struct matrix2 *m, int n)
 {
+
+
 	m->n = m->stride = n;
 	m->data = malloc(sizeof(*m->data) * m->n * m->n);
 }
@@ -32,7 +34,7 @@ void make_matrix2(struct matrix *m, struct matrix2 *m2)
 	m2->n = m2->stride = m->n;
 	m2->data = m->data;
 }
-
+/* C = C + A*B */
 void make_submatrix(struct matrix2 *m, struct matrix2 *sub, int r, int c, int blksz)
 {
 	sub->stride = m->stride;
@@ -40,7 +42,6 @@ void make_submatrix(struct matrix2 *m, struct matrix2 *sub, int r, int c, int bl
 	sub->n = blksz;
 }
 
-/* C = C + A*B */
 void naive_matrix_mult_add(struct matrix *C, struct matrix *A, struct matrix *B)
 {
 	int i,j,k;
